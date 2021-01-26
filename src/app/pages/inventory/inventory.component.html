@@ -2,39 +2,45 @@
   <h1>Create Reservation Inventory </h1>
   <p>Operating hours are 10am to 11pm, every day.  </p>
 
-  <div class="form-content">
+  <div class="twin-columns">
 
-    <form [formGroup]="createInventoryForm" (ngSubmit)="onSubmit()">
+    <div class="form-content">
+      <form [formGroup]="createInventoryForm" (ngSubmit)="onSubmit()">
 
-      <div>
-        <mat-form-field appearance="fill" color="primary">
-          <mat-label>Reservation Time</mat-label>
-          <mat-select formControlName="formTime">
-            <mat-option *ngFor="let rTime of operatingTimes;" [value]="rTime">
-              {{rTime}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
+        <div>
+          <mat-form-field appearance="fill" color="primary">
+            <mat-label>Reservation Time</mat-label>
+            <mat-select formControlName="formTime">
+              <mat-option *ngFor="let rTime of operatingTimes;" [value]="rTime">
+                {{rTime}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" color="primary">
+            <mat-label>Reservation Slots</mat-label>
+            <mat-select formControlName="formSlots">
+              <mat-option *ngFor="let size of reservationSlots;" [value]="size + 1">
+                {{size + 1}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="submit-buttons">
+          <button class="cancel" mat-raised-button color="basic" (click)="resetForm()">Cancel</button>
+          <button class="submit" mat-raised-button color="primary" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
 
-      <div>
-        <mat-form-field appearance="fill" color="primary">
-          <mat-label>Reservation Slots</mat-label>
-          <mat-select formControlName="formSlots">
-            <mat-option *ngFor="let size of reservationSlots;" [value]="size + 1">
-              {{size + 1}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-
-      <div class="submit-buttons">
-        <button class="cancel" mat-raised-button color="basic" (click)="resetForm()">Cancel</button>
-        <button class="submit" mat-raised-button color="primary" type="submit">Submit</button>
-      </div>
-    </form>
-
+    <div class="inventory-list">
+      <table>
+        <tr *ngFor="let slot of allInventorySlots">
+          <td>{{slot.time}}</td>
+          <td>{{slot.slots}}</td></tr>
+      </table>
+    </div>
 
   </div>
 

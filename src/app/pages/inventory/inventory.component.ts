@@ -15,6 +15,7 @@ export class InventoryComponent implements OnInit {
 
   reservationSlots = [...Array(6).keys()];
   operatingTimes = Array<string>();
+  allInventorySlots = Array<InventorySlot>();
 
   constructor(private formBuilder: FormBuilder,
               private inventoryService: InventoryService) { }
@@ -22,6 +23,7 @@ export class InventoryComponent implements OnInit {
   ngOnInit(): void {
     this.buildInventoryForm();
     this.generateOperatingTimes();
+    this.getAllInventory();
   }
 
   buildInventoryForm(): void {
@@ -51,6 +53,10 @@ export class InventoryComponent implements OnInit {
       }
     }
 
+  }
+
+  getAllInventory(): void {
+    this.inventoryService.getInventory()
   }
 
   onSubmit(): void {

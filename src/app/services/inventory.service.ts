@@ -21,7 +21,7 @@ export class InventoryService {
   }
 
   checkInventory(reservation: Reservation): Observable<boolean> {
-    const url = `${environment.backendUrl}/inventory`;
+    const url = `${environment.backendUrl}/inventory/check`;
     return this.http.post<boolean>(url, {
       reservation
     }).pipe(map(b => b));

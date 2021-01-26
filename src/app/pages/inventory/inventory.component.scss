@@ -9,13 +9,29 @@
     margin: 0 0 16px 0;
   }
 
+  .twin-columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 1px solid blue;
+  }
+
+  .inventory-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 16px 0 16px 0;
+    width: 400px;
+    border: 1px solid red;
+  }
 
   .form-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 16px 0 16px 0;
-    width: 600px;
+    width: 400px;
+    border: 1px solid green;
 
     ::ng-deep .mat-form-field {
       .mat-input-element {
