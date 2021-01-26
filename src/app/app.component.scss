@@ -32,12 +32,13 @@ p {
   height: 60px;
   display: flex;
   align-items: center;
-  background-color: #1976d2;
+  background-color: rebeccapurple;
   color: white;
   font-weight: 600;
 
   .title {
     font: bold 16px/40px Tahoma, Arial, sans-serif;
+    padding-left: 32px;
   }
 
   .navbar {
