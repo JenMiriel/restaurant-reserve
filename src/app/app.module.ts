@@ -3,9 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CreateReservationComponent } from './pages/create-reservation/create-reservation.component';
-import { ViewInventoryComponent } from './pages/view-inventory/view-inventory.component';
 import { RouterModule } from '@angular/router';
-import { CreateInventoryComponent } from './pages/create-inventory/create-inventory.component';
+import { InventoryComponent } from './pages/inventory/inventory.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,13 +14,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateReservationComponent,
-    ViewInventoryComponent,
-    CreateInventoryComponent
+    InventoryComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +33,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatDatepickerModule,
     MatSelectModule,
     MatNativeDateModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

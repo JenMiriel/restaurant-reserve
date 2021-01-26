@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import * as moment from 'moment';
+import { InventorySlot } from '../../models/inventory-slot';
+import { InventoryService } from '../../services/inventory.service';
 
 @Component({
   selector: 'app-create-inventory',
-  templateUrl: './create-inventory.component.html',
-  styleUrls: ['./create-inventory.component.scss']
+  templateUrl: './inventory.component.html',
+  styleUrls: ['./inventory.component.scss']
 })
-export class CreateInventoryComponent implements OnInit {
+export class InventoryComponent implements OnInit {
 
   createInventoryForm: FormGroup;
 
   reservationSlots = [...Array(6).keys()];
   operatingTimes = Array<string>();
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private inventoryService: InventoryService) { }
 
   ngOnInit(): void {
     this.buildInventoryForm();
@@ -53,19 +57,11 @@ export class CreateInventoryComponent implements OnInit {
     if (this.createInventoryForm.valid) {
       const payload = this.createInventoryForm.value;
       console.log('payload: ', payload);
-      //   const answerFormattedList = new Answers();
-      //   const responses = [];
-      //   for (const key in payload) {
-      //     // tslint:disable-next-line:radix
-      //     if (this.questions[parseInt(key) - 1].type === 'select') {
-      //       responses.push({question_id: key, option_id: payload[key]});
-      //     } else {
-      //       responses.push({question_id: key, text: payload[key]});
-      //     }
-      //   }
-      //   answerFormattedList.responses = responses;
-      //   this.penguinApi.postAnswersToQuestions(this.userEmail, answerFormattedList);
-      // }
+      const newInventorySlot = new InventorySlot({
+        time: moment(payload.formTime, 'hh:mm:ss'),
+        slots: payload.slots
+      });
+      (this.inventoryService.saveInventorySlot(newInventorySlot));
     }
   }
 

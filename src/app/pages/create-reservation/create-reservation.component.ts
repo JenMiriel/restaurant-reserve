@@ -1,6 +1,9 @@
 import { Component, OnInit  } from '@angular/core';
-import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
-
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Reservation } from '../../models/reservation';
+import * as moment from 'moment';
+import { ReservationService } from '../../services/reservation.service';
+import {InventoryService} from '../../services/inventory.service';
 
 @Component({
   selector: 'app-create-reservation',
@@ -15,7 +18,9 @@ export class CreateReservationComponent implements OnInit  {
   standardPartySizes = [...Array(10).keys()];
   mockAvailableTimes = ['11:15 am', '11:30 am', '1:00 pm'];
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private reservationService: ReservationService,
+              private inventoryService: InventoryService) { }
 
   ngOnInit(): void {
     this.buildReservationForm();
@@ -47,19 +52,17 @@ export class CreateReservationComponent implements OnInit  {
     if (this.reserveForm.valid) {
       const payload = this.reserveForm.value;
       console.log('payload: ', payload);
-      //   const answerFormattedList = new Answers();
-      //   const responses = [];
-      //   for (const key in payload) {
-      //     // tslint:disable-next-line:radix
-      //     if (this.questions[parseInt(key) - 1].type === 'select') {
-      //       responses.push({question_id: key, option_id: payload[key]});
-      //     } else {
-      //       responses.push({question_id: key, text: payload[key]});
-      //     }
-      //   }
-      //   answerFormattedList.responses = responses;
-      //   this.penguinApi.postAnswersToQuestions(this.userEmail, answerFormattedList);
-      // }
+      const newReservation = new Reservation({
+        name: payload.formName,
+        email: payload.formEmail,
+        partySize: payload.formPartySize,
+        date: moment(payload.formDate, 'YYYY-MM-DD'),
+        time: moment(payload.formTime, 'hh:mm:ss')
+      });
+      if (this.inventoryService.checkInventory(newReservation)) {
+        this.reservationService.saveReservation(newReservation);
+      }
+
     }
   }
 

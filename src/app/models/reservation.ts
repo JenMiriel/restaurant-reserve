@@ -1,9 +1,14 @@
-import {Time} from '@angular/common';
+import { Moment } from 'moment';
 
 export class Reservation {
   name: string;
   email: string;
   partySize: number;
-  date: Date;
-  time: Time;
+  date: Moment;
+  time: Moment;
+
+
+  constructor(init?: Partial<Reservation>) {
+    Object.assign(this, init);
+  }
 }

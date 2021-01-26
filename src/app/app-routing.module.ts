@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CreateReservationComponent } from './pages/create-reservation/create-reservation.component';
-import { ViewInventoryComponent } from './pages/view-inventory/view-inventory.component';
-import { CreateInventoryComponent } from './pages/create-inventory/create-inventory.component';
+import { InventoryComponent } from './pages/inventory/inventory.component';
 
 const routes: Routes = [
   {
@@ -11,12 +10,8 @@ const routes: Routes = [
     component: CreateReservationComponent,
   },
   {
-    path: 'view-inventory',
-    component: ViewInventoryComponent,
-  },
-  {
-    path: 'create-inventory',
-    component: CreateInventoryComponent,
+    path: 'inventory',
+    component: InventoryComponent,
   }
 ];
 
