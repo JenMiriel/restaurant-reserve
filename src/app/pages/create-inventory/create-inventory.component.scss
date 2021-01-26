@@ -1,0 +1,67 @@
+.create-inventory {
+  display: flex;
+  flex-direction: column;
+  margin: 45px;
+
+  h1 {
+    color: #000000;
+    font: bold 20px Roboto, "Helvetica Neue", sans-serif;
+    margin: 0 0 16px 0;
+  }
+
+
+  .form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 16px 0 16px 0;
+    width: 600px;
+
+    ::ng-deep .mat-form-field {
+      .mat-input-element {
+        color: slategray;
+      }
+      .mat-form-field-label {
+        color: slategray;
+      }
+      .mat-form-field-underline {
+        background-color: slategray;
+      }
+      .mat-form-field-ripple {
+        background-color: slategray;
+      }
+      .mat-form-field-required-marker {
+        color: slategray;
+      }
+    }
+
+    ::ng-deep .mat-form-field.mat-form-field-invalid {
+      .mat-input-element {
+        color: #ff33cc;
+      }
+      .mat-form-field-label {
+        color: #ff33cc;
+        .mat-form-field-required-marker {
+          color: #ff33cc;
+        }
+      }
+      .mat-form-field-ripple {
+        background-color: #ff33cc;
+      }
+    }
+
+
+    .submit-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      margin-top: 32px;
+      padding: 32px 16px 16px 0;
+      button {
+        font: 14px Roboto, "Helvetica Neue", sans-serif;
+        margin-right: 16px;
+        padding: 8px 16px 8px 16px;
+      }
+    }
+  }
+}

@@ -19,7 +19,6 @@ export class CreateReservationComponent implements OnInit  {
 
   ngOnInit(): void {
     this.buildReservationForm();
-    // this.reserveForm.controls[formTime].disable();
   }
 
   buildReservationForm(): void {
@@ -65,7 +64,7 @@ export class CreateReservationComponent implements OnInit  {
   }
 
   resetForm(): void {
-    this.form.reset();
+    this.reserveForm.reset();
   }
 
 }
